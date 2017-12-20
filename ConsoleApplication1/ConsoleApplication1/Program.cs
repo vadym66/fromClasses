@@ -45,7 +45,7 @@ namespace ConsoleApplication1
                 Console.WriteLine(phone.ToString());
             }
 
-           
+
         }
     }
 }

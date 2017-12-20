@@ -14,7 +14,10 @@ namespace ConsoleApplication1
         public void Add(CellPhone phone)
         {
             var phoneString = JsonConvert.SerializeObject(phone);
-            File.AppendAllLines(RepositryFilePath,new []{ phoneString });
+            using (StreamWriter streamWrite = new StreamWriter(RepositryFilePath, true))
+            {
+                streamWrite.WriteLine(phoneString);
+            }
         }
 
         public IEnumerable<CellPhone> GetAll()
@@ -25,13 +28,13 @@ namespace ConsoleApplication1
 
         public void Remove(int id)
         {
-            var phone = GetAll().Where(x => x.ID != id);
-            File.Open(RepositryFilePath, FileMode.Truncate).Close();
+            //var phone = GetAll().Where(x => x.ID != id);
+            //File.Open(RepositryFilePath, FileMode.Truncate).Close();
 
-            foreach (var phone in phones)
-            {
-                Add(phone);
-            }
+            //foreach (var phone in phones)
+            //{
+            //    Add(phone);
+            //}
         }
     }
 }
